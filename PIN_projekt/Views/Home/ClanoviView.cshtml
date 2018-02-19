@@ -1,0 +1,35 @@
+﻿@model PIN_projekt.Model.Clanovi
+@{
+    ViewData["Title"] = "Članovi";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Član od</th>
+            <th>Aktivan</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var clan in ViewBag.Clanovi)
+        {
+            <tr>
+                <th scope="row">@clan.ClanIme</th>
+                <td>@clan.ClanPrezime</td>
+                <td>@clan.ClanClanOd</td>
+                <td>@Html.CheckBoxFor(m => m.ConvertAktivan)</td>
+                <td>
+                    <input data-value="@clan.ClanId" type="button"
+                       onclick="location.href='@Url.Action("Unos_novog(@data-value)", "Home")" class="btnEdit" value="Ažuriraj" name="Ažuriraj" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<input id="Button1" type="button" value="Unos novog člana" onclick="location.href='@Url.Action("Unos_novog", "Home")'" />

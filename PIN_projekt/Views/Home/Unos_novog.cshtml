@@ -1,0 +1,57 @@
+﻿@model PIN_projekt.Model.Clanovi
+@{
+    ViewData["Title"] = "Unos novog člana";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm())
+{
+
+    <div>@Html.HiddenFor(m => m.ClanId)</div>
+    <div>@Html.ValidationMessageFor(m => m.ClanIme)</div>
+    <div>@Html.ValidationMessageFor(m => m.ClanPrezime)</div>
+    <div>@Html.ValidationMessageFor(m => m.ClanClanOd)</div>
+    <div>@Html.ValidationMessageFor(m => m.ClanGrupa)</div>
+
+    <table style="width:100%; padding:15px">
+        <tr>
+            <td><label for="Ime">Ime</label></td>
+            <td>@Html.TextBoxFor(m => m.ClanIme)</td>
+            <td><label for="Prezime">Prezime</label></td>
+            <td>@Html.TextBoxFor(m => m.ClanPrezime)</td>
+        </tr>
+        <tr>
+            <td><label for="EMail">e-Mail</label></td>
+            <td>@Html.TextBoxFor(m => m.ClanEmail)</td>
+            <td><label for="Telefon">Telefon</label></td>
+            <td>@Html.TextBoxFor(m => m.ClanTelefon)</td>
+        </tr>
+        <tr>
+            <td><label for="datumRodenja">Datum rođenja</label></td>
+            <td>@Html.EditorFor(m => m.ClanDatumRodenja)</td>
+            <td><label for="Visina">Visina</label></td>
+            <td>@Html.EditorFor(m => m.ClanVisina)</td>
+        </tr>
+        <tr>
+            <td><label for="brojNoge">Broj noge</label></td>
+            <td>@Html.EditorFor(m => m.ClanBrojNoge)</td>
+            <td><label for="datumOd">Član od</label></td>
+            <td>@Html.EditorFor(m => m.ClanClanOd)</td>
+        </tr>
+        <tr>
+            <td><label for="SvojstvoCombo">Svojstvo</label></td>
+            <td>@Html.DropDownListFor(m => m.ClanSvojstvo, new SelectList(ViewBag.Svojstva, "SvojstvoId", "SvojstvoNaziv"))</td>
+            <td><label for="AktivanCheck">Aktivan</label></td>
+            <td>@Html.CheckBoxFor(m => m.ConvertAktivan)</td>
+        </tr>
+        <tr>
+            <td><label for="GrupaCombo">Grupa</label></td>
+            <td>@Html.DropDownListFor(m => m.ClanGrupa, new SelectList(ViewBag.Grupe, "GrupaId", "GrupaNaziv"))</td>
+        </tr>
+    </table>
+    <div>
+        <input id="Upiši" type="submit" value="Upiši" />
+        <input id="Odustani" type="button" value="Odustani" onclick="location.href='@Url.Action("ClanoviView", "Home")'" />
+    </div>
+}
